@@ -24,18 +24,24 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-6 py-8">
+    <div className="min-h-screen bg-gray-900 text-gray-100 flex">
+      {/* Sidebar */}
+      <aside className="w-1/4 bg-gray-800 shadow-lg p-6 flex flex-col gap-6">
+        <h2 className="text-2xl font-bold text-center text-gray-200">Opciones de Ruta</h2>
+        <RouteOptions origen={origen} destino={destino} setRuta={setRuta} />
+      </aside>
 
-      <h1 className="text-3xl font-bold text-center mb-6">Ruta Visualizer</h1>
-
-      <RouteOptions origen={origen} destino={destino} setRuta={setRuta} />
-
-      <Map
-        origen={origen}
-        destino={destino}
-        ruta={ruta}
-        onCityClick={manejarCiudadClick}
-      />
+      {/* Mapa */}
+      <main className="flex-1 flex items-center justify-center p-6">
+        <div className="w-full h-full bg-gray-800 shadow-lg rounded-lg border border-gray-700 overflow-hidden">
+          <Map
+            origen={origen}
+            destino={destino}
+            ruta={ruta}
+            onCityClick={manejarCiudadClick}
+          />
+        </div>
+      </main>
     </div>
   );
 }

@@ -19,12 +19,6 @@ export async function obtenerRutaMejorCalidad(origen, destino) {
   return res.json();
 }
 
-export async function obtenerRutaConInteres(origen, destino) {
-  const res = await fetch(`${API_URL}/ruta_con_interes?origen=${origen}&destino=${destino}`);
-  if (!res.ok) throw new Error("No se pudo obtener la ruta con lugares de interés.");
-  return res.json();
-}
-
 export async function obtenerRutaConLugares(origen, destino, lugares) {
   const queryString = encodeURIComponent(lugares);
   const res = await fetch(`${API_URL}/ruta_con_lugares_requeridos?origen=${origen}&destino=${destino}&lugares=${queryString}`);
