@@ -45,6 +45,7 @@ def ruta_mas_rapida(origen: str, destino: str):
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
 @app.get("/ruta_mejor_calidad")
 def ruta_mejor_calidad(origen: str, destino: str):
     try:
@@ -55,20 +56,6 @@ def ruta_mejor_calidad(origen: str, destino: str):
         return {
             "ruta": resultado[0]["Ruta"],
             "calidad": resultado[0]["Calidad"]
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/ruta_con_interes")
-def ruta_con_interes(origen: str, destino: str):
-    try:
-        consulta = f"ruta_con_interes({origen}, {destino}, Ruta, Lugares)"
-        resultado = list(prolog.query(consulta, maxresult=1))
-        if not resultado:
-            raise HTTPException(status_code=404, detail="No se encontró ruta.")
-        return {
-            "ruta": resultado[0]["Ruta"],
-            "lugares": list(resultado[0]["Lugares"])
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
